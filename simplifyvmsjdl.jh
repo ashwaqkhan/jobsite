@@ -1,0 +1,107 @@
+
+entity BasicDetails  {
+JobRole String required,
+WorkFromHome Boolean required,
+Type JobType required,
+Shift Jobshift required,
+MinSalary Long,
+MaxSalRY Long,
+Openings Integer required,
+WorkingDays String required,
+WorkTimings String required,
+MinEducation Qualification required,
+Experience RequiredExp required,
+Gender GenderReq required
+}
+enum Jobshift{
+Night, Morning
+}
+
+enum JobType{
+PartTime , FullTime 
+}
+
+enum Qualification{
+BelowTenth, Tenth, Diploma , ITI , Graduate, Post_Graduate
+}
+enum RequiredExp{
+Fresher, Experienced
+}
+enum GenderReq{
+Male,
+Female, 
+Any
+}
+
+entity JobDetails{
+RequiredSkills SkillReq required,
+English ReqEnglish required,
+JobDescription String required,
+SecurityDepositCharged DepositCharged required
+}
+
+enum SkillReq{
+Computer_or_Laptop_Ownersip,
+Wifi_Or_Internet,
+Html,
+Css,
+JavaScript,
+Bootstrap,
+JQuery,
+Sql,
+Php,
+React,
+Nodejs,
+Angularjs,
+Ajax,
+WordPress,
+WebDesigning
+}
+
+enum ReqEnglish{
+NOEnglish,
+ThodaEnglish,
+GoodEnglish,
+FluentEnglish
+}
+
+enum DepositCharged{
+Yes, No
+}
+
+entity InterviewInformation {
+CompanyName String required,
+RecruitersName String,
+HRwhatsappNumber Long,
+ContactEmail String,
+//Add Address as Heading
+BuildingName String,
+City String,
+Area String
+RecieveApplicationsFrom Application
+}
+
+enum Application{
+EntireCity,
+EntireIndia
+}
+
+entity Apply{
+Name String required,
+MobileNo Long required
+}
+
+relationship OneToOne{
+BasicDetails{jobDetails} to JobDetails,JobDetails{interviewInformation} to InterviewInformation,
+
+}
+
+relationship OneToMany{
+Apply{basicDetails} to BasicDetails
+}
+
+
+//
+
+// Set an angular suffix
+// angularSuffix * with mySuffix
